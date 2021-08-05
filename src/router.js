@@ -4,6 +4,7 @@ import {
 } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import Album from './views/Album.vue'
+import Idol from './views/Idol.vue'
 
 const routes = [
   {
@@ -12,7 +13,7 @@ const routes = [
   },
   {
     path: '/album/:idol',
-    component: Album
+    component: Idol
     // component: StoryList
   },
   // {

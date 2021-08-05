@@ -4,6 +4,7 @@ import {
 import App from './App.vue'
 import router from './router'
 import store from './store'
+
 import {
   // create naive ui
   create,
@@ -16,7 +17,10 @@ import {
   NLayoutHeader,
   NLayoutSider,
   NGrid,
-  NGridItem
+  NGridItem,
+  NCard,
+  NThing,
+  NAvatar
 } from 'naive-ui'
 
 const app = createApp(App)
@@ -30,7 +34,10 @@ const naive = create({
     NLayoutHeader,
     NLayoutSider,
     NGrid,
-    NGridItem
+    NGridItem,
+    NCard,
+    NThing,
+    NAvatar
   ]
 })
 

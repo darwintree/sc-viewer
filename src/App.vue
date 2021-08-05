@@ -36,6 +36,10 @@ html{
   background: url("./assets/pattern_bg.png");
 }
 
+.n-layout-content {
+  margin: 10px 30px
+}
+
 .n-layout {
   background: none
 }

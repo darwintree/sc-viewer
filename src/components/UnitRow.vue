@@ -27,6 +27,8 @@
   </n-grid>
 </template>
 <script>
+import { getUnitSrc, getIdolSrc } from '../tools'
+
 export default {
   name: "UnitRow",
   props: ["unitName"],
@@ -37,15 +39,10 @@ export default {
   },
   methods: {
     getUnitSrc(unit) {
-      let src;
-      src = "/unit/" + unit + ".png";
-      return src;
+      return getUnitSrc(unit);
     },
     getIdolSrc(idol) {
-      let src;
-      src = "/idol/thumb/" + idol + ".webp";
-
-      return src;
+      return getIdolSrc(idol);
     },
   },
 };
