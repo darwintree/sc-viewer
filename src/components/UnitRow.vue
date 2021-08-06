@@ -9,25 +9,29 @@
     </n-gi>
     <n-gi v-for="idol in unitMembers" v-bind:key="idol" :span="2">
       <!-- <div class="green"></div> -->
-      <router-link :to="idol" tag="img" v-bind:alt="idol" v-bind:title="idol">
+      <router-link
+        :to="`/album/idol/${idol}`"
+        tag="img"
+        v-bind:alt="idol"
+        v-bind:title="idol"
+      >
         <img :src="getIdolSrc(idol)" style="width: 100%; cursor: pointer" />
       </router-link>
     </n-gi>
   </n-grid>
   <n-grid x-gap="12">
-    <n-gi :span="6">
-    </n-gi>
+    <n-gi :span="6"> </n-gi>
     <n-gi v-for="idol in unitMembers" v-bind:key="idol" :span="2">
-      <router-link :to="idol" style="text-decoration: none">
+      <router-link :to="`/album/idol/${idol}`" style="text-decoration: none">
         <div style="width: 100%; text-align: center">
-          <a style="text-decoration: none; color: #333">{{ idol }}</a>
+          <a class="black-a">{{ idol }}</a>
         </div>
       </router-link>
     </n-gi>
   </n-grid>
 </template>
 <script>
-import { getUnitSrc, getIdolSrc } from '../tools'
+import { getUnitSrc, getIdolSrc } from "../tools";
 
 export default {
   name: "UnitRow",
@@ -48,7 +52,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.black-a {
+  text-decoration: none;
+  color: #333;
+}
+
 .center-grid {
   display: flex;
   align-items: center;

@@ -20,7 +20,14 @@ import {
   NGridItem,
   NCard,
   NThing,
-  NAvatar
+  NAvatar,
+  NModal,
+  NList,
+  NListItem,
+  NTag,
+  NBreadcrumb,
+  NBreadcrumbItem,
+  NBackTop
 } from 'naive-ui'
 
 const app = createApp(App)
@@ -37,7 +44,14 @@ const naive = create({
     NGridItem,
     NCard,
     NThing,
-    NAvatar
+    NAvatar,
+    NModal,
+    NList,
+    NListItem,
+    NTag,
+    NBreadcrumb,
+    NBreadcrumbItem,
+    NBackTop
   ]
 })
 

@@ -5,6 +5,7 @@
         v-bind:idolName="idol"
         v-bind:allList="allObject?.list"
         v-bind:translatedList="translatedObject?.list"
+        v-bind:translatedDetails="translatedObject?.details"
       ></card-list>
     </n-layout-content>
     <n-layout-sider>
