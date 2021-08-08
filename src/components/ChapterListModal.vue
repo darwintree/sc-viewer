@@ -20,7 +20,7 @@
           >
             <n-list-item class="center">
               <router-link
-                :to="`/album/idol/${$route.params.idol}/${
+                :to="`/album/${$route.params.idol}/${
                   selectedStoryObj.name
                 }/${stripCsvSuffix(chapterName)}`"
                 class="text item black-a"
@@ -45,7 +45,7 @@ import { PlayCircle20Regular } from "@vicons/fluent";
 import { Icon } from '@vicons/utils'
 
 export default {
-  props: ["showModal", "selectedStoryObj", "translatedDetails", "showIcon"],
+  props: ["showModal", "selectedStoryObj", "translatedDetails"],
   emits: ["update:showModal"],
   name: "ChapterListModal",
   components: {
@@ -56,6 +56,11 @@ export default {
     showModal(newVal) {
       this.$emit("update:showModal", newVal);
     },
+  },
+  computed: {
+    showIcon() {
+      return Boolean(this.selectedStoryObj.id)
+    }
   },
   methods: {
     getIconSrc(cardId) {

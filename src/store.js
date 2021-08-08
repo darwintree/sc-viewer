@@ -12,7 +12,7 @@ const store = createStore({
     return {
       count: 0,
       units,
-      others: index['283_production'],
+      others: index['others'],
       configBase: urls['configBase'],
       translationBase: urls['translationBase']
       // urls: {

@@ -27,7 +27,9 @@ import {
   NTag,
   NBreadcrumb,
   NBreadcrumbItem,
-  NBackTop
+  NBackTop,
+  NTabs,
+  NTabPane
 } from 'naive-ui'
 
 const app = createApp(App)
@@ -51,7 +53,9 @@ const naive = create({
     NTag,
     NBreadcrumb,
     NBreadcrumbItem,
-    NBackTop
+    NBackTop,
+    NTabs,
+    NTabPane
   ]
 })
 

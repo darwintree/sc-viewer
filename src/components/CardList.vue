@@ -1,8 +1,22 @@
 <template>
-  <n-grid x-gap="12" y-gap="12" cols="3">
-    <n-gi v-for="(cardObj, index) in allList" v-bind:key="index">
-      <n-thing class="card-style" @click="selectStory(cardObj)">
-        <template #avatar>
+  <n-grid x-gap="40" y-gap="12" cols="4">
+    <n-gi v-for="(cardObj, index) in presentList" v-bind:key="index">
+      <n-card
+        @click="selectStory(cardObj)"
+        hoverable
+        v-if="Boolean(cardObj.cover)"
+      >
+        <template #cover>
+          <img :src="coverSrc(cardObj.cover)" />
+        </template>
+        <template #header>
+          <div>
+            {{ cardObj.name }}
+          </div>
+        </template>
+      </n-card>
+      <n-thing class="card-style" @click="selectStory(cardObj)" v-else>
+        <template #avatar v-if="!Boolean(cardObj.cover)">
           <n-avatar :src="getIconSrc(cardObj.id)" :size="80"> </n-avatar>
         </template>
         <template #header>
@@ -15,22 +29,19 @@
   </n-grid>
   <chapter-list-modal
     v-model:showModal="showModal"
-    v-bind:showIcon="showIcon"
     v-bind:selectedStoryObj="selectedStoryObj"
     v-bind:translatedDetails="translatedDetails"
   ></chapter-list-modal>
 </template>
 
 <script>
-import { getIconSrc } from "../tools";
-import ChapterListModal from './ChapterListModal.vue'
-
+import { getIconSrc, getCampaignCover } from "../tools";
+import ChapterListModal from "./ChapterListModal.vue";
 
 export default {
-  // 渲染所有的卡片
-  props: ["idolName", "allList", "translatedList", "translatedDetails"],
+  props: ["presentList", "translatedDetails"],
   components: {
-    ChapterListModal
+    ChapterListModal,
   },
   name: "CardList",
   data() {
@@ -39,28 +50,37 @@ export default {
       showModal: false,
     };
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     getIconSrc(cardId) {
+      if (!cardId) {
+        return "";
+      }
       return getIconSrc(cardId);
     },
     selectStory(cardObj) {
       this.selectedStoryObj = cardObj;
       this.showModal = true;
     },
+    coverSrc(coverName) {
+      return getCampaignCover(coverName);
+    },
   },
   computed: {
-    showIcon() {
-      return this.selectedStoryObj?.name[0] === '【'
-    }
+    showModalIcon() {
+      return Boolean(this.selectedStoryObj?.id);
+    },
   },
 };
 </script>
 
 <style scoped>
 .card-style {
-  background: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.n-card{
+  cursor: pointer;
 }
 
 .card-style:hover {
@@ -72,6 +92,10 @@ export default {
 
 .card-style :deep(.n-thing-header-wrapper) {
   display: flex;
+}
+
+.n-card :deep(.n-card__content) {
+  padding-bottom: 0;
 }
 
 .center-grid {

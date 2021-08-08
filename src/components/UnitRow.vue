@@ -10,7 +10,7 @@
     <n-gi v-for="idol in unitMembers" v-bind:key="idol" :span="2">
       <!-- <div class="green"></div> -->
       <router-link
-        :to="`/album/idol/${idol}`"
+        :to="to(idol)"
         tag="img"
         v-bind:alt="idol"
         v-bind:title="idol"
@@ -22,7 +22,7 @@
   <n-grid x-gap="12">
     <n-gi :span="6"> </n-gi>
     <n-gi v-for="idol in unitMembers" v-bind:key="idol" :span="2">
-      <router-link :to="`/album/idol/${idol}`" style="text-decoration: none">
+      <router-link :to="to(idol)" style="text-decoration: none">
         <div style="width: 100%; text-align: center">
           <a class="black-a">{{ idol }}</a>
         </div>
@@ -31,7 +31,7 @@
   </n-grid>
 </template>
 <script>
-import { getUnitSrc, getIdolSrc } from "../tools";
+import { getUnitSrc, getIdolSrc, getIdolFullName } from "../tools";
 
 export default {
   name: "UnitRow",
@@ -40,6 +40,9 @@ export default {
     unitMembers() {
       return this.$store.state.units[this.unitName] ?? [];
     },
+    othersLine() {
+      return this.unitName === "283_production"
+    }
   },
   methods: {
     getUnitSrc(unit) {
@@ -48,6 +51,9 @@ export default {
     getIdolSrc(idol) {
       return getIdolSrc(idol);
     },
+    to(idol) {
+      return `/album/${getIdolFullName(idol)}`
+    }
   },
 };
 </script>

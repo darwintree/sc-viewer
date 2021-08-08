@@ -5,7 +5,9 @@ import {
 import HelloWorld from './components/HelloWorld.vue'
 import Album from './views/Album.vue'
 import Idol from './views/Idol.vue'
+import Campaign from './views/Campaign.vue'
 import StoryPage from './views/StoryPage.vue'
+import RouterPage from './views/RouterPage.vue'
 
 const routes = [
   {
@@ -13,16 +15,16 @@ const routes = [
     component: Album
   },
   {
-    path: '/album/idol/:idol',
-    component: Idol
+    path: '/album/:idol',
+    component: RouterPage
     // component: StoryList
   },
   // {
-  //   path: '/album/:idol/:collection',
-  //   component: StoryList
+  //   path: '/album/:idol/:story/:chapter',
+  //   component: RouterPage
   // },
   {
-    path: '/album/idol/:idol/:story/:chapter',
+    path: '/album/:idol/:story/:chapter',
     component: StoryPage
   },
   {

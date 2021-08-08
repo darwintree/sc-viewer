@@ -14,7 +14,6 @@
     >
     <chapter-list-modal
       v-model:showModal="showModal"
-      v-bind:showIcon="false"
       v-bind:selectedStoryObj="storyObj"
       v-bind:translatedDetails="translatedDetails"
     ></chapter-list-modal>

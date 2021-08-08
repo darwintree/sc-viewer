@@ -3,13 +3,13 @@
     <n-breadcrumb-item @click="to('/album')">相簿首页</n-breadcrumb-item>
     <n-breadcrumb-item
       v-if="$route.params.idol"
-      @click="to(`/album/idol/${$route.params.idol}`)"
+      @click="to(`/album/${$route.params.idol}`)"
       >
         {{ $route.params.idol }}</n-breadcrumb-item
     >
     <n-breadcrumb-item
       v-if="$route.params.story"
-      @click="to(`/album/idol/${$route.params.idol}`)"
+      @click="to(`/album/${$route.params.idol}`)"
       >{{ $route.params.story }}</n-breadcrumb-item
     >
     <n-breadcrumb-item v-if="$route.params.chapter">{{

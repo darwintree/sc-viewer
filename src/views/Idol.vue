@@ -1,70 +1,83 @@
 <template>
   <n-layout has-sider>
     <n-layout-content>
-      <card-list
-        v-bind:idolName="idol"
-        v-bind:allList="allObject?.list"
-        v-bind:translatedList="translatedObject?.list"
-        v-bind:translatedDetails="translatedObject?.details"
-      ></card-list>
+      <n-tabs default-value="card" justify-content="space-evenly" type="line">
+        <n-tab-pane name="card" tab="卡片剧情">
+          <card-list
+            v-bind:presentList="cardList"
+            v-bind:translatedDetails="translatedDetails"
+          ></card-list>
+        </n-tab-pane>
+        <n-tab-pane name="produce" tab="共通剧情">
+          <card-list
+            v-bind:presentList="universalList"
+            v-bind:translatedDetails="translatedDetails"
+          ></card-list>
+        </n-tab-pane>
+      </n-tabs>
     </n-layout-content>
     <n-layout-sider>
-      <profile
-        v-bind:idolName="idol"
-      ></profile>
+      <profile v-bind:idolName="idol"></profile>
     </n-layout-sider>
   </n-layout>
 </template>
 
 <script>
-import { parse } from "papaparse"
-import Profile from '../components/Profile.vue'
-import CardList from '../components/CardList.vue'
-import { get } from '../tools'
+import Profile from "../components/Profile.vue";
+import CardList from "../components/CardList.vue";
+import { get } from "../tools";
 
 export default {
   components: {
     Profile,
-    CardList
+    CardList,
   },
   data() {
     return {
       idol: "",
-      allObject: null,
-      translatedObject: null
+      allDetails: null,
+      translatedDetails: null,
+    };
+  },
+  computed: {
+    cardList() {
+      if (!this.allDetails) return [];
+      return Object.keys(this.allDetails).map((id) => {
+        return {
+          id: id,
+          name: this.allDetails[id].name,
+        };
+      });
+    },
+    universalList() {
+      if (!this.translatedDetails) return [];
+      return Object.keys(this.translatedDetails).map((name) => {
+        if (name[0] === "【") return null
+        return {
+          name,
+        };
+      }).filter(Boolean);
     }
   },
   // setup(props, context) {
 
   // },
   mounted() {
-  // executed immediately after page is fully loaded
-    this.$nextTick(async function() {
-      
+    // executed immediately after page is fully loaded
+    this.$nextTick(async function () {
       this.idol = this.$route.params.idol;
       // console.log(Papa)
 
-      this.allObject = await get(this.$store.getters.allCardsUrl(this.idol))
-      this.translatedObject = await get(this.$store.getters.translatedUrl(this.idol))
-      // this.$http.get("/story_tree.json").then((res)=> {
-      //   // console.log(res.data)
-      //   res.data.children.forEach((folder) => {
-      //     if (folder.name.indexOf(this.idol) > -1) {
-      //       if (folder.name === this.idol) {
-      //         this.idolStoryInfo = folder.children
-      //       } else {
-      //         this.idolStoryInfo = folder.children
-      //         this.$router.push(folder.name)
-      //       }
-      //     }
-      //   })
-      // })
-      
+      this.allDetails = (
+        await get(this.$store.getters.allCardsUrl(this.idol))
+      ).details;
+      this.translatedDetails = (
+        await get(this.$store.getters.translatedUrl(this.idol))
+      ).details;
     });
   },
-}
+};
 </script>
 
 <style>
-
 </style>

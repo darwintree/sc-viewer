@@ -1,4 +1,4 @@
-import { getUnitSrc, getIdolSrc, getIconSrc } from './getImgSrc'
+import { getUnitSrc, getIdolSrc, getIconSrc,getCampaignCover } from './getImgSrc'
 import {
   urls,
   getIdolStories,
@@ -12,5 +12,6 @@ export {
   urls,
   getIdolStories,
   getIdolFullName,
-  get
+  get,
+  getCampaignCover
 }

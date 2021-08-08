@@ -5,6 +5,11 @@
       v-bind:key="index"
       v-bind:unitName="unitName"
     ></unit-row>
+    <unit-row
+      v-for="(unitName, index) in others"
+      v-bind:key="index"
+      v-bind:unitName="unitName"
+    ></unit-row>
   </div>
 </template>
 <script>
@@ -17,6 +22,9 @@ export default {
     unitList() {
       return Object.keys(this.$store.state.units);
     },
+    others() {
+      return Object.keys(this.$store.state.others)
+    }
   },
 };
 </script>
