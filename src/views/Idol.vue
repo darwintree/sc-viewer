@@ -40,14 +40,27 @@ export default {
     };
   },
   computed: {
+    // Note: our project is based on SCTtanslation, the idol-info file only provided aux info
     cardList() {
-      if (!this.allDetails) return [];
-      return Object.keys(this.allDetails).map((id) => {
+      if (!this.translatedDetails || !this.allDetails) return [];
+      let nameSet = new Set()
+      let baseList = Object.keys(this.allDetails).map((id) => {
+        nameSet.add(this.allDetails[id].name)
         return {
           id: id,
           name: this.allDetails[id].name,
         };
       });
+      Object.keys(this.translatedDetails).map((name) => {
+        if (!nameSet.has(name) && name[0] === "【") {
+          nameSet.add(name)
+          baseList.push({
+            name,
+          })
+        }
+        return null
+      });
+      return baseList
     },
     universalList() {
       if (!this.translatedDetails) return [];

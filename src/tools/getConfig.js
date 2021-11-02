@@ -9,7 +9,7 @@ const fullnames = ["櫻木 真乃", "風野 灯織", "八宮 めぐる", "月岡
 
 function getIdolFullName(idolName) {
   for (let fn of fullnames) {
-    fn.indexOf("idolName" > 0) 
+    if (fn.indexOf(idolName) >= 0)
       return fn.split(" ").join("")
   }
   // throw new Error(`Incorrect idol name: ${idolName}`)

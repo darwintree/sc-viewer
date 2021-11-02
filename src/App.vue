@@ -43,7 +43,7 @@ export default {
 body,
 html {
   height: 100%;
-  background: url("./assets/pattern_bg.png");
+  /* background: url("@/assets/pattern_bg.png"); */
 }
 
 #app {
@@ -61,6 +61,8 @@ html {
 }
 
 .n-layout {
-  background: none;
+  /* background: rgba(255, 255, 255, 0); */
+  background-image: url("@/assets/pattern_bg.png");
+
 }
 </style>
