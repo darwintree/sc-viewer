@@ -1,5 +1,5 @@
 <template>
-  <n-grid x-gap="40" y-gap="12" cols="4">
+  <n-grid x-gap="40" y-gap="12" cols="2 s:2 m:2 l:3 xl:4" responsive="screen">
     <n-gi v-for="(cardObj, index) in presentList" v-bind:key="index">
       <n-card
         @click="selectStory(cardObj)"

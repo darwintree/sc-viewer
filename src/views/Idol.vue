@@ -1,5 +1,6 @@
 <template>
-  <n-layout has-sider>
+  <!-- <n-layout has-sider> -->
+  <n-layout>
     <n-layout-content>
       <n-tabs default-value="card" justify-content="space-evenly" type="line">
         <n-tab-pane name="card" tab="卡片剧情">
@@ -16,9 +17,16 @@
         </n-tab-pane>
       </n-tabs>
     </n-layout-content>
-    <n-layout-sider>
+    <!-- <n-layout-sider 
+        collapse-mode="transform"
+        :collapsed-width="10"
+        :width="240"
+        show-trigger="bar"
+        content-style="padding: 24px;"
+        bordered
+      >
       <profile v-bind:idolName="idol"></profile>
-    </n-layout-sider>
+    </n-layout-sider> -->
   </n-layout>
 </template>
 
@@ -92,5 +100,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+.n-layout {
+  /* background: rgba(255, 255, 255, 0); */
+  background: None;
+
+}
 </style>

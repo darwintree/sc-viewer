@@ -1,14 +1,15 @@
 <template>
-  <n-layout has-sider>
+  <!-- <n-layout has-sider> -->
+  <n-layout>
     <n-layout-content>
       <card-list
         v-bind:presentList="universalList"
         v-bind:translatedDetails="translatedDetails"
       ></card-list>
     </n-layout-content>
-    <n-layout-sider>
+    <!-- <n-layout-sider>
       <profile v-bind:idolName="idol"></profile>
-    </n-layout-sider>
+    </n-layout-sider> -->
   </n-layout>
 </template>
 
@@ -59,5 +60,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.n-layout {
+  /* background: rgba(255, 255, 255, 0); */
+  background: None;
+
+}
 </style>

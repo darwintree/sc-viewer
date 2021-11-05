@@ -2,11 +2,11 @@
   <!-- <img alt="283 logo" src="./assets/logo.png" /> -->
   <!-- <HelloWorld msg="Hello Vue 3 + Vite" /> -->
   <!-- <n-space id="app"> -->
-  <n-layout>
+  <n-layout class="bg">
     <n-layout-header class="header" ref="header">
       <bread-crumb-nav></bread-crumb-nav>
     </n-layout-header>
-    <n-layout-content >
+    <n-layout-content>
       <router-view></router-view>
       <!-- <n-back-top :listen-to="target" :bottom="220" :visibility-height="10">
         <div
@@ -39,7 +39,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 body,
 html {
   height: 100%;
@@ -58,9 +58,10 @@ html {
 
 .n-layout-content {
   margin: 10px 30px;
+  background: None;
 }
 
-.n-layout {
+.bg {
   /* background: rgba(255, 255, 255, 0); */
   background-image: url("@/assets/pattern_bg.png");
 
