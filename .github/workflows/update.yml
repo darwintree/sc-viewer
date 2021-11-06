@@ -2,7 +2,7 @@ name: Update
 on:   
   push:
   schedule:
-    - cron: '30 9,21 * * *'
+    - cron: '30 9 * * *'
 
 jobs:
   Update-config:
@@ -19,21 +19,15 @@ jobs:
         wget $IDOL_INFO_URL -O public/assets/config/idol/idol-info.json
         wget $ICON_URL -O public/assets/config/idol/icon-info.json
     
-    # - name: Process story tree
+    # - name: Use Node.js
+    #   uses: actions/setup-node@v1
+    #   with:
+    #     node-version: '14.x'
+    # - name: fetch new icons
+    #   # if: steps.changes.outputs.changed == 1
     #   run: |
-    #     python scripts/getTree.py
-    # - name: Process idol info
-    #   run: |
-    #     python scripts/processIdolInfo.py
-    - name: Use Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
-    - name: fetch new icons
-      # if: steps.changes.outputs.changed == 1
-      run: |
-        npm install
-        node scripts/local/fetch-icon.js
+    #     npm install
+    #     node scripts/local/fetch-icon.js
     - name: Check if there are changes
       id: changes
       uses: UnicornGlobal/has-changes-action@v1.0.11

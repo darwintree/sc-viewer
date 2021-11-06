@@ -2,4 +2,6 @@ node_modules
 .DS_Store
 dist
 dist-ssr
+public/assets/idol/card
+public/assets/idol/movie
 *.local
