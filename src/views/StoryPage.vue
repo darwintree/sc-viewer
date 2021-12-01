@@ -8,10 +8,18 @@
       v-bind:index="index"
       v-bind:len="csv.length"
     ></story-line>
-    <n-button class="to-top fixed-button" @click="toTop">回到顶部</n-button>
-    <n-button class="show-content fixed-button" @click="showModal = true"
-      >目录</n-button
-    >
+    <n-space vertical justify="center" class="fixed-button show-content">
+      <n-button  @click="toTop">回到顶部</n-button>
+      <n-button  @click="showModal = true"
+        >目录</n-button
+      >
+      <n-upload
+        @before-upload="refuseUpload"
+        action="./hello"
+      >
+        <n-button>上传文件</n-button>
+      </n-upload>
+    </n-space>
     <chapter-list-modal
       v-model:showModal="showModal"
       v-bind:selectedStoryObj="storyObj"
@@ -88,6 +96,16 @@ export default {
     },
   },
   methods: {
+    refuseUpload({file}) {
+      this.handleFile(file)
+      return false
+    },
+    async handleFile(file) {
+      // console.log(file)
+      const data = await file.file.text()
+      this.csv = Papa.parse(data).data
+    },
+
     toTop() {
       window.scrollTo({
         top: 0,
@@ -123,7 +141,9 @@ export default {
       //   .catch((err) => {
       //     this.error = err;
       //   });
-      await Promise.all(this.getCsv(), this.fetchDetails())
+      // await Promise.all(this.getCsv(), this.fetchDetails())
+      this.getCsv()
+      this.fetchDetails()
     });
   },
 };

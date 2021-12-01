@@ -75,12 +75,15 @@ export default {
       // return this.line[3]
     },
     thumb() {
+      if (!this.line[1]) {
+        return getIdolSrc("")
+      }
       return getIdolSrc(this.line[1]);
     },
   },
 };
 </script>
-<style>
+<style scoped>
 .container {
   /* position: relative;
     z-index: 1; */
